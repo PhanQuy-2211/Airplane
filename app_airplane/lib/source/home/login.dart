@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:app_airplane/signup.dart';
-import 'package:app_airplane/main.dart';
-import 'package:app_airplane/forgetpass.dart';
+import 'package:app_airplane/source/home/signup.dart';
+import 'package:app_airplane/source/homepage.dart';
+import 'package:app_airplane/source/home/forgetpass.dart';
 
 class LoginPage extends StatelessWidget {
   @override

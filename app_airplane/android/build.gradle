@@ -18,5 +18,11 @@ tasks.register("clean", Delete) {
 }
 
 dependencies {
-    classpath 'com.google.gms:google-services:4.4.0'
+    classpath 'com.google.gms:google-services:4.4.2'
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+    // Add the dependency for the Firebase SDK for Google Analytics
+    implementation("com.google.firebase:firebase-analytics")
+    //Add the dependency for the Realtime Database library
+    implementation("com.google.firebase:firebase-database")
 }

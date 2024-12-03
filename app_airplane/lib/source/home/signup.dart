@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:app_airplane/login.dart';
-import 'package:app_airplane/main.dart';
+import 'package:app_airplane/source/home/login.dart';
+import 'package:app_airplane/source/homepage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignupPage extends StatelessWidget {
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
