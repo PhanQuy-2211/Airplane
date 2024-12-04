@@ -25,4 +25,5 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     //Add the dependency for the Realtime Database library
     implementation("com.google.firebase:firebase-database")
+    classpath 'com.google.gms.google-services4.4.2'
 }

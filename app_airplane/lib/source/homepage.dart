@@ -171,7 +171,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: ElevatedButton(
                         onPressed: () {  
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SignupPage()),);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()),);
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.transparent,

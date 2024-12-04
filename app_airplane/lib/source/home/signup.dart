@@ -3,10 +3,29 @@ import 'package:flutter/services.dart';
 import 'package:app_airplane/source/home/login.dart';
 import 'package:app_airplane/source/homepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:app_airplane/source/firebase/fire_auth.dart';
+import 'package:app_airplane/source/widget.dart';
 
-class SignupPage extends StatelessWidget {
-  
-  
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+  @override
+  State<SignUpPage> createState() => _signUpPageState();
+  }
+class _signUpPageState extends State<SignUpPage> {
+  final FirebaseAuthService _auth = FirebaseAuthService();
+
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,10 +90,30 @@ class SignupPage extends StatelessWidget {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 30),
-                    makeInPut(label: "Email"),
-                    makeInPut(label: "Password", obscureText: true),
-                    makeInPut(label: "Confirm Password", obscureText: true),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    FormContainerWidget(
+                      controller: _usernameController,
+                      hintText: "Username",
+                      isPasswordField: false,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FormContainerWidget(
+                      controller: _emailController,
+                      hintText: "Email",
+                      isPasswordField: false,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FormContainerWidget(
+                      controller: _passwordController,
+                      hintText: "Password",
+                      isPasswordField: true,
+                    ),
                     SizedBox(height: 20),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 3, vertical: 3),
@@ -85,7 +124,7 @@ class SignupPage extends StatelessWidget {
                       child: MaterialButton(
                         minWidth: double.infinity,
                         height: 60,
-                        onPressed: () {},
+                        onPressed: _signUp,
                         color: Colors.greenAccent,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -138,36 +177,20 @@ class SignupPage extends StatelessWidget {
       ),
     );
   }
+  
+  void _signUp() async {
 
-  Widget makeInPut({required String label, bool obscureText = false}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ),
-        ),
-        SizedBox(height: 5),
-        TextField(
-          obscureText: obscureText,
-          style: TextStyle(color: Colors.black),
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black),
-            ),
-            border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black),
-            ),
-            hintStyle: TextStyle(color: Colors.black45),
-          ),
-        ),
-        SizedBox(height: 30),
-      ],
-    );
+    String username = _usernameController.text;
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      print( "User is successfully created");
+      Navigator.pushNamed(context, "/home");
+    } else {
+      print("Some error happend");
+    }
   }
 }

@@ -3,8 +3,32 @@ import 'package:flutter/services.dart';
 import 'package:app_airplane/source/home/signup.dart';
 import 'package:app_airplane/source/homepage.dart';
 import 'package:app_airplane/source/home/forgetpass.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:app_airplane/source/firebase/fire_auth.dart';
+import 'package:app_airplane/source/widget.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+
+  bool _isSigning = false;
+  final FirebaseAuthService _auth = FirebaseAuthService();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,9 +92,22 @@ class LoginPage extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center, // Căn giữa text
                   ),
-                  SizedBox(height: 30),
-                  makeInPut(label: "Email"),
-                  makeInPut(label: "Password", obscureText: true),
+                   SizedBox(
+                    height: 30,
+                  ),
+                  FormContainerWidget(
+                    controller: _emailController,
+                    hintText: "Email",
+                    isPasswordField: false,
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  FormContainerWidget(
+                    controller: _passwordController,
+                    hintText: "Password",
+                    isPasswordField: true,
+                  ),
                   SizedBox(height: 20),
                   Hero(
                     tag: 'loginButton',  // Đảm bảo tag trùng với tag ở HomePage
@@ -83,7 +120,7 @@ class LoginPage extends StatelessWidget {
                       child: MaterialButton(
                         minWidth: double.infinity,
                         height: 60,
-                        onPressed: () {},
+                        onPressed: _signIn,
                         color: Colors.greenAccent,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -132,7 +169,7 @@ class LoginPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SignupPage(),
+                              builder: (context) => SignUpPage(),
                             ),
                           );
                         },
@@ -154,28 +191,25 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+  void _signIn() async {
+    setState(() {
+      _isSigning = true;
+    });
 
-  Widget makeInPut({label, obscureText = false}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: TextStyle(fontSize: 18, color: Colors.black)),
-        SizedBox(height: 10),
-        TextField(
-          obscureText: obscureText,
-          decoration: InputDecoration(
-            fillColor: Colors.grey[200],
-            filled: true,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide.none,
-            ),
-            hintText: "Enter $label",
-            hintStyle: TextStyle(color: Colors.grey[600]),
-          ),
-        ),
-        SizedBox(height: 20),
-      ],
-    );
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+    setState(() {
+      _isSigning = false;
+    });
+
+    if (user != null) {
+      print("User is successfully signed in");
+      Navigator.pushNamed(context, "/home");
+    } else {
+      print("some error occured");
+    }
   }
 }
