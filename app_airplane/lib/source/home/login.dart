@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:app_airplane/source/home/signup.dart';
-import 'package:app_airplane/source/homepage.dart';
+import 'package:app_airplane/source/firstpage.dart';
 import 'package:app_airplane/source/home/forgetpass.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_airplane/source/firebase/fire_auth.dart';
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: MaterialButton(
                         minWidth: double.infinity,
                         height: 60,
-                        onPressed: _signIn,
+                        onPressed: _login,
                         color: Colors.greenAccent,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -191,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  void _signIn() async {
+  void _login() async {
     setState(() {
       _isSigning = true;
     });

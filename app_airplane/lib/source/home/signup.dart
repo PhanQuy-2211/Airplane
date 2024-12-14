@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:app_airplane/source/home/login.dart';
-import 'package:app_airplane/source/homepage.dart';
+import 'package:app_airplane/source/firstpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_airplane/source/firebase/fire_auth.dart';
 import 'package:app_airplane/source/widget.dart';
@@ -188,7 +188,7 @@ class _signUpPageState extends State<SignUpPage> {
 
     if (user != null) {
       print( "User is successfully created");
-      Navigator.pushNamed(context, "/home");
+      Navigator.pushNamed(context, "'/login'");
     } else {
       print("Some error happend");
     }
