@@ -27,4 +27,13 @@ Future<User?> signInWithEmailAndPassword(String email, String password) async {
   return null;
 
 }
+
+Future<void> resetPassword(String email) async {
+  try {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    print("Password reset email sent");
+  } catch (e) {
+    print("Error: $e");
+  }
+}
 }

@@ -1,7 +1,16 @@
+import 'package:app_airplane/source/firebase/fire_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class ForgotPasswordPage extends StatelessWidget {
+class ForgotPasswordPage extends StatefulWidget {
+  const ForgotPasswordPage({super.key});
+  @override
+  State<ForgotPasswordPage> createState() => _ForgotPasswordPage();
+  }
+
+  class _ForgotPasswordPage extends State<ForgotPasswordPage>{
+    final _auth = FirebaseAuthService();
+    final _email = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +70,7 @@ class ForgotPasswordPage extends StatelessWidget {
                   ),
                   SizedBox(height: 30),
                   TextField(
+                    controller: _email,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: "Email Address",
@@ -95,7 +105,8 @@ class ForgotPasswordPage extends StatelessWidget {
                                 "A password reset link has been sent to your email."),
                             actions: [
                               TextButton(
-                                onPressed: () {
+                                onPressed: () async {
+                                  await _auth.resetPassword(_email.text);
                                   Navigator.pop(context); // Đóng dialog
                                 },
                                 child: Text("OK"),

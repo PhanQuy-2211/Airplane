@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_airplane/source/firebase/fire_auth.dart';
 import 'package:app_airplane/source/widget.dart';
 
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -21,6 +22,8 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+
+  String? _errorMessage;
 
   @override
   void dispose() {
@@ -109,6 +112,13 @@ class _LoginPageState extends State<LoginPage> {
                     isPasswordField: true,
                   ),
                   SizedBox(height: 20),
+                  // Hiển thị thông báo lỗi nếu có
+                  if (_errorMessage != null)
+                    Text(
+                      _errorMessage!,
+                      style: TextStyle(color: Colors.red, fontSize: 15),
+                    ),
+                  SizedBox(height: 20),
                   Hero(
                     tag: 'loginButton',  // Đảm bảo tag trùng với tag ở HomePage
                     child: Container(
@@ -139,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 10),
                   Align(
-                    alignment: Alignment.centerRight, // Căn lề phải
+                    alignment: Alignment.center, // Căn lề phải
                     child: TextButton(
                       onPressed: () {
                         Navigator.push(
@@ -194,22 +204,41 @@ class _LoginPageState extends State<LoginPage> {
   void _login() async {
     setState(() {
       _isSigning = true;
+      _errorMessage = null;
     });
 
     String email = _emailController.text;
     String password = _passwordController.text;
 
-    User? user = await _auth.signInWithEmailAndPassword(email, password);
+    if (email.isEmpty || password.isEmpty) {
+      setState(() {
+        _isSigning = false;
+        _errorMessage = "Email and password cannot be empty.";
+      });
+      return;
+    }
 
-    setState(() {
-      _isSigning = false;
-    });
+    try {
+      User? user = await _auth.signInWithEmailAndPassword(email, password);
 
-    if (user != null) {
-      print("User is successfully signed in");
-      Navigator.pushNamed(context, "/home");
-    } else {
-      print("some error occured");
+      setState(() {
+        _isSigning = false;
+      });
+
+      if (user != null) {
+        Navigator.pushNamed(context, "/home");
+      } else {
+        setState(() {
+          _errorMessage =
+              "Your email or password is incorrect. Please try again.";
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _isSigning = false;
+        _errorMessage =
+            "Your email or password is incorrect. Please try again.";
+      });
     }
   }
 }
