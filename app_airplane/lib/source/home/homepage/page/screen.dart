@@ -27,7 +27,7 @@ class ScreenGeneral extends StatelessWidget {
     );
   }
 }
-
+// test search
 class FlightHotelSearchDelegate extends SearchDelegate {
   final List<String> flightsAndHotels = [
     'Flight: New York to Los Angeles',
