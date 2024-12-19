@@ -6,7 +6,7 @@ class AllProduct extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('All Products'),
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.close),
