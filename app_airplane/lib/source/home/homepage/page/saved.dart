@@ -11,6 +11,7 @@ class _SavedState extends State<Saved> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Saved'),
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.more_vert),

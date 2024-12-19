@@ -36,4 +36,17 @@ Future<void> resetPassword(String email) async {
     print("Error: $e");
   }
 }
+
+Future<void> registerUser(String email, String password, String displayName) async {
+  try {
+    UserCredential userCredential = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password);
+
+    // Cập nhật tên hiển thị
+    await userCredential.user?.updateDisplayName(displayName);
+    await userCredential.user?.reload();
+  } catch (e) {
+    print("Lỗi đăng ký: $e");
+  }
+}
 }

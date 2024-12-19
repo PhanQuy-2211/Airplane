@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/cardAccount.dart';
@@ -12,9 +13,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    final User? user = FirebaseAuth.instance.currentUser;
+    final String username = user?.displayName ?? 'Unknown User';
     return Scaffold(
       appBar: AppBar(
         title: Text('Trapel'),
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.more_vert),
@@ -24,7 +28,7 @@ class _HomeState extends State<Home> {
       ),
       body: ListView(
         children: <Widget>[
-          CardAccount(),
+          CardAccount(username: username),
           Divider(),
           MainMenu(),
           Promotion()
