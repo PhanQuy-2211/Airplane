@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:app_airplane/source/firebase/fire_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../components/cardAccount.dart';
 import '../components/mainMenu.dart';
 import '../components/promotion.dart';
@@ -11,10 +10,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String? username;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUsername();
+  }
+
+  Future<void> _loadUsername() async {
+  String? fetchedUsername = await FirebaseAuthService().fetchUsername();
+  setState(() {
+    username = fetchedUsername;
+  });
+  }
   @override
   Widget build(BuildContext context) {
-    final User? user = FirebaseAuth.instance.currentUser;
-    final String username = user?.displayName ?? 'Unknown User';
+    /*final User? user = FirebaseAuth.instance.currentUser;
+    final String username = user?.displayName ?? 'Unknown User';*/
     return Scaffold(
       appBar: AppBar(
         title: Text('Trapel'),
@@ -28,7 +41,7 @@ class _HomeState extends State<Home> {
       ),
       body: ListView(
         children: <Widget>[
-          CardAccount(username: username),
+          CardAccount(username:  username ?? 'Loading...'),
           Divider(),
           MainMenu(),
           Promotion()

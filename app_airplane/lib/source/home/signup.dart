@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:app_airplane/source/home/login.dart';
@@ -187,6 +188,11 @@ class _signUpPageState extends State<SignUpPage> {
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
     if (user != null) {
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+      'username': username,
+      'email': email,
+      });
+
       print( "User is successfully created");
       Navigator.pushNamed(context, "'/login'");
     } else {

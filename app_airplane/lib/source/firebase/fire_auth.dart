@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthService {
@@ -48,5 +49,19 @@ Future<void> registerUser(String email, String password, String displayName) asy
   } catch (e) {
     print("Lỗi đăng ký: $e");
   }
+}
+
+Future<String?> fetchUsername() async {
+  try {
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid != null) {
+      DocumentSnapshot userDoc =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      return userDoc['username'];
+    }
+  } catch (e) {
+    print("Error fetching username: $e");
+  }
+  return null;
 }
 }
