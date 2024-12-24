@@ -1,0 +1,20 @@
+﻿from_code,from_name,to_code,to_name,flying_time,date,departure_time,number,airline,airfare
+DAD,Da Nang,HAN,Ha Noi,1h 20m,12/26/2024,6:20 AM,VJ-514,VietJet Air,1.003.000 VND
+HAN,Ha Noi,DAD,Da Nang,1h 25m,12/26/2024,6:25 AM,QH-101,Bamboo Airways,2.565.730 VND
+HAN,Ha Noi,DAD,Da Nang,1h 20m,12/26/2024,7:25 AM,VU-635,Vietravel Airlines,2.192.000 VND
+DAD,Da Nang,HAN,Ha Noi,1h 25m,12/26/2024,8:20 AM,QH-102,Bamboo Airways,1.958.030 VND
+DAD,Da Nang,HAN,Ha Noi,1h 25m,12/26/2024,9:30 AM,VU-638,Vietravel Airlines,1.834.000 VND
+DAD,Da Nang,SGN,TP HCM,1h 20m,12/26/2024,10:25 AM,VU-673,Vietravel Airlines,2.336.000 VND
+DAD,Da Nang,SGN,TP HCM,1h 20m,12/26/2024,11:55 AM,QH-165,Bamboo Airways,2.336.000 VND
+HAN,Ha Noi,DAD,Da Nang,1h 20m,12/26/2024,5:50 PM,VU-639,Vietravel Airlines,2.336.000 VND
+SGN,TP HCM,DAD,Da Nang,55m,12/26/2024,6:15 PM,VN-1414,Vietravel Airlines,4.487.681 VND
+HAN,Ha Noi,DAD,Da Nang,1h 15m,12/26/2024,7:10 PM,VJ-1549,VietJet Air,2.398.386 VND
+DAD,Da Nang,SGN,TP HCM,1h 25m,12/26/2024,7:40 PM,VJ-645,VieJet Air,1.329.601 VND
+DAD,Da Nang,SGN,TP HCM,1h 20m,12/26/2024,7:50 PM,VN-141,Vietravel Airlines,2.523.320 VND
+DAD,Da Nang,HAN,Ha Noi,1h 20m,12/26/2024,7:55 PM,VU-658,Vietravel Airlines,1.003.000 VND
+DAD,Da Nang,HAN,Ha Noi,1h 20m,12/26/2024,8:45 PM,VJ-522,VietJet Air,1.018.000 VND
+SGN,TP HCM,DAD,Da Nang,1h 20m,12/26/2024,9:35 PM,VJ-644,VietJet Air,2.122.000 VND
+SGN,TP HCM,DAD,Da Nang,1h 20m,12/26/2024,10:15 PM,VJ-638,VietJet Air,1.975.000 VND
+HAN,Ha Noi,DAD,Da Nang,1h 15m,12/26/2024,10:40 PM,VJ-525,VietJet Air,2.174.000 VND
+DAD,Da Nang,SGN,TP HCM,1h 25m,12/26/2024,10:50 PM,VJ-639,VietJet Air,1.827.000 VND
+DAD,Da Nang,SGN,TP HCM,1h 30m,12/26/2024,10:50 PM,QH-151,Bamboo Airways,2.291.750 VND

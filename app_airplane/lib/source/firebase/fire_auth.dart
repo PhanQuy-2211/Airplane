@@ -64,4 +64,19 @@ Future<String?> fetchUsername() async {
   }
   return null;
 }
+
+Future<String?> fetchemail() async {
+  try {
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid != null) {
+      DocumentSnapshot userDoc =
+          await FirebaseFirestore.instance.collection('email').doc(uid).get();
+      return userDoc['email'];
+    }
+  } catch (e) {
+    print("Error fetching email: $e");
+  }
+  return null;
+}
+
 }

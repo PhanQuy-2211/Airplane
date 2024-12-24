@@ -38,7 +38,7 @@ class ForgotPasswordPage extends StatefulWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('background.jpg'),
+                image: AssetImage('images/background.jpg'),
                 fit: BoxFit.cover,
               ),
             ),

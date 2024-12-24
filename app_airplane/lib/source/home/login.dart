@@ -5,7 +5,7 @@ import 'package:app_airplane/source/firstpage.dart';
 import 'package:app_airplane/source/home/forgetpass.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_airplane/source/firebase/fire_auth.dart';
-import 'package:app_airplane/source/widget.dart';
+import 'package:app_airplane/source/widget/widget.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('background.jpg'),
+                image: AssetImage('images/background.jpg'),
                 fit: BoxFit.cover,
               ),
             ),

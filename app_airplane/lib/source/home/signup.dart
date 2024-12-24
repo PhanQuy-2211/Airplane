@@ -5,7 +5,7 @@ import 'package:app_airplane/source/home/login.dart';
 import 'package:app_airplane/source/firstpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_airplane/source/firebase/fire_auth.dart';
-import 'package:app_airplane/source/widget.dart';
+import 'package:app_airplane/source/widget/widget.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -59,7 +59,7 @@ class _signUpPageState extends State<SignUpPage> {
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('background.jpg'),
+                image: AssetImage('images/background.jpg'),
                 fit: BoxFit.cover,
               ),
             ),

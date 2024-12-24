@@ -28,24 +28,17 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   const Text(
                     "Welcome",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                    style: TextStyle(fontFamily: 'Pacifico', fontWeight: FontWeight.bold, fontSize: 70, color: Colors.redAccent),
                   ),
                   const SizedBox(height: 20),
-                  Text(
-                    "Automatic identity verification which enables you to verify your identity",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontSize: 15,
-                    ),
-                  ),
                 ],
               ),
               Container(
-                height: MediaQuery.of(context).size.height / 3,
+                height: MediaQuery.of(context).size.height / 1.8,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('illustration.jpeg'),
+                    image: AssetImage('images/danang.jpg'),
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -75,13 +68,13 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                           color: isLoginHovered
                               ?Colors.greenAccent
-                              : Colors.orange,
+                              : Colors.yellow[400],
                           borderRadius: BorderRadius.circular(50),
                           border: Border.all(color: Colors.black),
                           boxShadow: isLoginHovered
                               ? [
                                   const BoxShadow(
-                                    color: Colors.yellow,
+                                    color: Colors.greenAccent,
                                     blurRadius: 50,
                                     offset: Offset(0, 5),
                                   ),
@@ -92,25 +85,26 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              PageRouteBuilder(
-                                pageBuilder: (context, animation, secondaryAnimation) => LoginPage(),
-                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                  // Sử dụng Curves.easeInOut để hiệu ứng mềm mại hơn
-                                  const curve = Curves.easeInOut;
+                              MaterialPageRoute(builder: (context) => LoginPage()),
+                              // PageRouteBuilder(
+                              //   pageBuilder: (context, animation, secondaryAnimation) => LoginPage(),
+                              //   transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                              //     // Sử dụng Curves.easeInOut để hiệu ứng mềm mại hơn
+                              //     const curve = Curves.easeInOut;
 
-                                  // Thêm CurvedAnimation cho animation
-                                  var curvedAnimation = CurvedAnimation(
-                                    parent: animation,
-                                    curve: curve,
-                                  );
+                              //     // Thêm CurvedAnimation cho animation
+                              //     var curvedAnimation = CurvedAnimation(
+                              //       parent: animation,
+                              //       curve: curve,
+                              //     );
 
-                                  return FadeTransition(
-                                    opacity: curvedAnimation,
-                                    child: child,
-                                  );
-                                },
-                                transitionDuration: const Duration(seconds: 2), // Thời gian chuyển cảnh (2 giây)
-                              ),
+                              //     return FadeTransition(
+                              //       opacity: curvedAnimation,
+                              //       child: child,
+                              //     );
+                              //   },
+                              //   transitionDuration: const Duration(seconds: 0), // Thời gian chuyển cảnh (2 giây)
+                              // ),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -155,14 +149,14 @@ class _HomePageState extends State<HomePage> {
                       height: 60,
                       decoration: BoxDecoration(
                         color: isSignupHovered
-                            ? Colors.amber
-                            : Colors.yellow, // Màu khi hover và không hover
+                            ?Colors.greenAccent
+                            : Colors.yellow[400],
                         borderRadius: BorderRadius.circular(50),
                         border: Border.all(color: Colors.black),
                         boxShadow: isSignupHovered
                             ? [
                                 const BoxShadow(
-                                  color: Colors.red,
+                                  color: Colors.greenAccent,
                                   blurRadius: 50,
                                   offset: Offset(0, 4),
                                 ),

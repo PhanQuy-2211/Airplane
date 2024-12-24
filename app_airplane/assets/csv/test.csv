@@ -1,0 +1,4 @@
+﻿from_code;from_name;to_code;to_name;flying_time;date;departure_time;number
+HND;Tokyo;LAX;Los Angeles;12h 45m;24/12/2024;10:30:00 SA;12345
+JFK;New York;LHR;London;7h 30m;25/12/2024;10:15:00 CH;67890
+SYD;Sydney;AKL;Auckland;3h 10m;26/12/2024;2:00:00 CH;54321
