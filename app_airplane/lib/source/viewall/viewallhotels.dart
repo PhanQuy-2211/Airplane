@@ -23,10 +23,11 @@ class _AllHotelsPageState extends State<AllHotelsPage> {
   Future<void> loadCsvData() async {
     try {
       // Đọc file CSV từ thư mục assets
-      final rawData = await rootBundle.loadString('assets/csv/ticketlist.csv');
+      final rawData = await rootBundle.loadString('assets/csv/hotel.csv');
 
-      // Cấu hình để dùng dấu phân cách là dấu ;
-      List<List<dynamic>> csvData = const CsvToListConverter(fieldDelimiter: ',').convert(rawData);
+      // Cấu hình để dùng dấu phân cách là dấu ,
+      List<List<dynamic>> csvData =
+          const CsvToListConverter(fieldDelimiter: ',').convert(rawData);
 
       // Kiểm tra nếu file CSV rỗng hoặc không đủ dữ liệu
       if (csvData.isEmpty || csvData.length < 2) {
@@ -42,10 +43,10 @@ class _AllHotelsPageState extends State<AllHotelsPage> {
           continue;
         }
         parsedHotels.add({
-          'place': csvData[i][0],       // Tên khách sạn
-          'destination': csvData[i][1],   // Địa điểm
-          'price': csvData[i][2],      // Giá
-          'image': csvData[i][3],  // Hình ảnh
+          'place': csvData[i][0], // Tên khách sạn
+          'destination': csvData[i][1], // Địa điểm
+          'price': csvData[i][2], // Giá
+          'image': csvData[i][3], // Hình ảnh
         });
       }
 
@@ -71,6 +72,7 @@ class _AllHotelsPageState extends State<AllHotelsPage> {
               itemCount: hotelList.length,
               padding: const EdgeInsets.all(16.0),
               itemBuilder: (context, index) {
+                // Sử dụng HotelScreen() để hiển thị thông tin khách sạn
                 return HotelScreen(hotel: hotelList[index]);
               },
             ),

@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Container(
           width: double.infinity,
@@ -34,10 +35,10 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               Container(
-                height: MediaQuery.of(context).size.height / 1.8,
+                height: MediaQuery.of(context).size.height / 2,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('images/danang.jpg'),
+                    image: AssetImage('assets/images/danang.png'),
                     fit: BoxFit.cover,
                   ),
                 ),

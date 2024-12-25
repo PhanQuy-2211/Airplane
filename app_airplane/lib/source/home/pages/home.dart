@@ -44,7 +44,7 @@ class Home extends StatelessWidget {
                             BorderRadius.circular(AppLayout.getHeight(context,10)),
                         image: const DecorationImage(
                           fit: BoxFit.fitHeight,
-                          image: AssetImage("assets/images/img_1.png"),
+                          image: AssetImage("assets/images/danang.png"),
                         ),
                       ),
                     )

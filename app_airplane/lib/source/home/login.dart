@@ -57,25 +57,26 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       body: Stack(
-        children: [
-          // Hình nền
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/background.jpg'),
-                fit: BoxFit.cover,
-              ),
+      children: [
+      // Hình nền
+        Container(
+          height: MediaQuery.of(context).size.height,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/background.jpg'),
+              fit: BoxFit.cover,
             ),
           ),
-          // Nội dung trên nền
-          SingleChildScrollView(
+        ),
+    // Nội dung trên nền
+        Center( // Đảm bảo nội dung căn giữa
+          child: SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center, // Căn giữa dọc
-                crossAxisAlignment: CrossAxisAlignment.center, // Căn giữa ngang
+                mainAxisAlignment: MainAxisAlignment.center, // Căn giữa theo trục dọc
+                crossAxisAlignment: CrossAxisAlignment.center, // Căn giữa theo trục ngang
                 children: [
                   Text(
                     "Login",
@@ -95,24 +96,19 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     textAlign: TextAlign.center, // Căn giữa text
                   ),
-                   SizedBox(
-                    height: 30,
-                  ),
+                  SizedBox(height: 30),
                   FormContainerWidget(
                     controller: _emailController,
                     hintText: "Email",
                     isPasswordField: false,
                   ),
-                  SizedBox(
-                    height: 30,
-                  ),
+                  SizedBox(height: 30),
                   FormContainerWidget(
                     controller: _passwordController,
                     hintText: "Password",
                     isPasswordField: true,
                   ),
                   SizedBox(height: 20),
-                  // Hiển thị thông báo lỗi nếu có
                   if (_errorMessage != null)
                     Text(
                       _errorMessage!,
@@ -120,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   SizedBox(height: 20),
                   Hero(
-                    tag: 'loginButton',  // Đảm bảo tag trùng với tag ở HomePage
+                    tag: 'loginButton',
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 3, vertical: 3),
                       decoration: BoxDecoration(
@@ -149,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 10),
                   Align(
-                    alignment: Alignment.center, // Căn lề phải
+                    alignment: Alignment.center,
                     child: TextButton(
                       onPressed: () {
                         Navigator.push(
@@ -197,10 +193,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      ],
+    ),
+  );
+}
   void _login() async {
     setState(() {
       _isSigning = true;

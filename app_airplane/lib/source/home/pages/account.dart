@@ -64,7 +64,7 @@ class _AccountState extends State<Account> {
                     ),
                     image: _image == null
                         ? const DecorationImage(
-                            image: AssetImage("assets/images/img_1.png"),
+                            image: AssetImage("assets/images/illustration.jpeg"),
                             fit: BoxFit.cover)
                         : DecorationImage(
                             image: FileImage(_image!), // Hiển thị ảnh người dùng chọn
@@ -156,14 +156,6 @@ class _AccountState extends State<Account> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      maxRadius: 25,
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                          Icons.lightbulb_outline,
-                          color: Styles.primaryColor,
-                          size: 27),
-                    ),
                     SizedBox(height: AppLayout.getHeight(context,12)),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -177,11 +169,11 @@ class _AccountState extends State<Account> {
                           ),
                         ),
                         Text(
-                          "You've 95 flights in a year",
+                          "You've a voucher for an 8% discount on your first flight.",
                           style: Styles.headLineStyle2.copyWith(
                             fontWeight: FontWeight.bold,
                             color: Colors.white.withOpacity(0.9),
-                            fontSize: 16,
+                            fontSize: 13,
                           ),
                         ),
                       ],
